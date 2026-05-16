@@ -1,7 +1,7 @@
 from music21 import corpus, note
 
 class MusicDataLoader:
-    def __init__(self, limit=300):
+    def __init__(self, limit=400):
         self.limit = limit
 
     def get_bach_sequences(self):

@@ -1,13 +1,13 @@
 # main.py
 import os
 import sys
+
+# Import your settings from the new config module
+from src.config import MODEL_PATH, OUTPUT_FILE, GENERATION_LENGTH, OUTPUT_DIR
 from src.pipeline import MusicPipeline
 
-# Ensure output folder exists
-os.makedirs("output", exist_ok=True)
-
-MODEL_PATH = "artifacts/bach_markov.pkl"
-OUTPUT_FILE = "output/bach_generated.mid"
+# Ensure output folder exists dynamically using config values
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 def main():
     # Safety Check: Did you actually train a model first?
@@ -18,11 +18,11 @@ def main():
 
     print("--- Launching Generation Pipeline ---")
     
-    # Initialize pipeline (it will automatically find the saved order inside the pkl)
+    # Initialize pipeline with the centralized model path
     pipeline = MusicPipeline(model_path=MODEL_PATH)
     
-    # 1. Generate music tokens and save to MIDI
-    pipeline.run_generation_flow(output_path=OUTPUT_FILE, length=200)
+    # 1. Generate music tokens using config settings
+    pipeline.run_generation_flow(output_path=OUTPUT_FILE, length=GENERATION_LENGTH)
     
     # 2. Play the music immediately
     print(f"\n--- Playing: {OUTPUT_FILE} ---")

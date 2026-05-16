@@ -22,7 +22,7 @@ def main():
     pipeline = MusicPipeline(model_path=MODEL_PATH)
     
     # 1. Generate music tokens and save to MIDI
-    pipeline.run_generation_flow(output_path=OUTPUT_FILE, length=60)
+    pipeline.run_generation_flow(output_path=OUTPUT_FILE, length=200)
     
     # 2. Play the music immediately
     print(f"\n--- Playing: {OUTPUT_FILE} ---")
